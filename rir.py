@@ -50,12 +50,12 @@ class Rir:
 			
 			# Check if the bot is addressed by its nick
 			if msg['text'].startswith(self.nick + ':'):
-					command = msg['text'].split(self.nick + ':', 1)[1].strip()
-					self.execute(command, msg)
+				command = msg['text'].split(self.nick + ':', 1)[1].strip()
+				self.execute(command, msg)
 			# If the bot is addressed via PRIVMSG
 			elif msg['type'] == 'PRIVMSG' and msg['to'] == self.nick:
-					command = msg['text']
-					self.execute(command, msg)
+				command = msg['text']
+				self.execute(command, msg)
 	
 	def execute(self, command, msg):
 		"""Execute a command"""
