@@ -47,24 +47,29 @@ class Rir:
 				msg['nick'], msg['host'] = info.split('!')
 			except:
 				pass
-				
-			# Check if the bot is addressed by its nick or via PRIVMSG
-			if msg['host'] in self.users and (msg['text'].startswith(self.nick + ':') or
-			  (msg['type'] == 'PRIVMSG' and msg['to'] == self.nick)):
-			  	if msg['type'] == 'PRIVMSG' and msg['to'] == self.nick:
-			  		command = msg['text']
-			  	else:
+			
+			# Check if the bot is addressed by its nick
+			if msg['text'].startswith(self.nick + ':'):
 					command = msg['text'].split(self.nick + ':', 1)[1].strip()
-				# Kill bot
-				if command == 'die' or command.lower().startswith('quit'):
-					self.irc.send('QUIT :rir\r\n')
-					self.irc.close()
-					self.done = True
-				# Avoid sending useless commands to server
-				elif len(command) > 2:
-					# Send raw command
-					self.irc.send('%s\r\n' % command)
-					print '->', command
+					self.execute(command, msg)
+			# If the bot is addressed via PRIVMSG
+			elif msg['type'] == 'PRIVMSG' and msg['to'] == self.nick:
+					command = msg['text']
+					self.execute(command, msg)
+	
+	def execute(self, command, msg):
+		"""Execute a command"""
+		# Kill bot
+		if command == 'die' or command.lower().startswith('quit'):
+			if msg['host'] in self.users:
+				self.irc.send('QUIT :rir\r\n')
+				self.irc.close()
+				self.done = True
+		# Send a raw command
+		elif len(command) > 2:
+			if msg['host'] in self.users:
+				self.irc.send('%s\r\n' % command)
+				print '->', command
 
 	def loop(self):
 		"""Receive data from server for as long as possible"""
