@@ -17,7 +17,7 @@ class Rir:
 		self.done = False
 
 	def connect(self):
-		"""Connect to IRC"""
+		"""Connect to the IRC server"""
 		self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.irc.connect((self.host, self.port))
 		self.irc.send('USER %s localhost %s :%s\r\nNICK %s\r\n' % (self.nick, self.host, self.nick, self.nick))
@@ -32,7 +32,14 @@ class Rir:
 			print '-> PONG :%s' % info[1]
 		# Not a ping request, so parse the message
 		elif not info[0]:
-			msg = {'text':'', 'from':'', 'type':'', 'to':'', 'nick':'', 'host':''}
+			msg = {
+				'text': '',
+				'from': '',
+				'type': '',
+				'to': '',
+				'nick': '',
+				'host': '',
+			}
 			try:
 				# Split line into message parts
 				info, msg['text'] = line.split(':', 2)[1:]
