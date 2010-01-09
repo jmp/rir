@@ -1,3 +1,6 @@
+rir
+===
+
 This is a very simple IRC bot. You can control it by sending a PRIVMSG to
 it, or addressing it by its name. For example:
 
