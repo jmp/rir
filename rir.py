@@ -18,7 +18,7 @@ class Rir:
         """Connect to the IRC server"""
         self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.irc.connect((self.host, self.port))
-        self.irc.send('USER %s localhost %s :%s\r\n' % (self.nick, self.host, self.nick)
+        self.irc.send('USER %s localhost %s :%s\r\n' % (self.nick, self.host, self.nick))
         self.irc.send('NICK %s\r\n' % self.nick)
 
     def quit(self):
