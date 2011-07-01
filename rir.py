@@ -78,11 +78,7 @@ class Rir:
                 self.parse(line)
             buffer = buffer[-1]
 
-def main():
-    """The main function"""
+if __name__ == '__main__':
     bot = Rir()
     bot.connect()
     bot.loop()
-
-if __name__ == '__main__':
-    main()
