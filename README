@@ -1,9 +1,9 @@
 rir
 ===
 
-This is a very simple IRC bot. You can control it by either sending a PRIVMSG to
-it, or by addressing it by its nickname on a channel. Everything you send to the
-bot will be sent raw to the IRC server. For example:
+This is a very simple IRC bot. You can control it by either sending a PRIVMSG
+directly to it, or by addressing it by its nickname on a channel. Everything you
+send to the bot will be sent raw to the IRC server. For example:
 
     rir: JOIN #eggs
 
@@ -11,7 +11,7 @@ This tells the bot to send "JOIN #eggs" to the IRC server. To send messages to
 channels or other users, use the standard PRIVMSG syntax:
 
     rir: PRIVMSG bill :you stink
-    rir: PRIVMSG #eggs :my omelette is delicous
+    rir: PRIVMSG #eggs :my omelette is delicious
 
 The only predefined command is "die" or "quit". This will kill the bot:
 
