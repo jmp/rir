@@ -3,9 +3,7 @@
 
 import socket
 
-
 class Rir:
-
     def __init__(self, nick='rir', host='irc.oftc.net', port=6667, users=[]):
         """Rir initializer"""
         self.nick = nick
